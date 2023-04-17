@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+  <record id="product_template_view_extension" model="ir.ui.view">
+    <field name="name">product.template.form.extension</field>
+    <field name="model">product.template</field>
+    <field name="inherit_id" ref="product.product_template_only_form_view"/>
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='standard_price']" position="attributes">
+        <attribute name="groups">natsuky_access_permissions.group_product_access_cost</attribute>
+      </xpath>
+    </field>
+  </record>
+
+  <record id="product_template_view_tree_extension" model="ir.ui.view">
+    <field name="name">product.template.tree.extension</field>
+    <field name="model">product.template</field>
+    <field name="inherit_id" ref="product.product_template_tree_view"/>
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='standard_price']" position="attributes">
+        <attribute name="groups">natsuky_access_permissions.group_product_access_cost</attribute>
+      </xpath>
+    </field>
+  </record>
+
+</odoo>
+
