@@ -1,0 +1,27 @@
+<odoo>
+  <data>
+
+    <record id="sale_order_form_extension" model="ir.ui.view">
+      <field name="name">sale.order.form.extension</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_order_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//form[1]/sheet[1]/notebook[1]" position="inside">
+          <page string="Forma pago" name="method_of_payment">
+            <group name="method_of_payment1">
+              <group name="method_of_payment2">
+                <field name="reserve_uf" string="Reserva" attrs="{'readonly': [('state', 'in', ['sale', 'done', 'cancel'])]}"/>
+                <field name="saving_uf" string="Ahorro" attrs="{'readonly': [('state', 'in', ['sale', 'done', 'cancel'])]}"/>
+                <field name="mortgage_credit_uf" string="Crédito Hipotecario" attrs="{'readonly': [('state', 'in', ['sale', 'done', 'cancel'])]}"/>
+                <field name="foot_uf" string="Pie" attrs="{'readonly': [('state', 'in', ['sale', 'done', 'cancel'])]}"/>
+                <field name="against_writing_uf" string="Contra Escritura" attrs="{'readonly': [('state', 'in', ['sale', 'done', 'cancel'])]}"/>
+                <field name="total_uf" string="Total"/>
+              </group>
+            </group>
+          </page>
+        </xpath>
+      </field>
+    </record>
+
+  </data>
+</odoo>

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_saleorder_document_heli">
+        <t t-call="web.external_layout">
+            <t t-set="doc" t-value="doc.with_context(lang=doc.partner_id.lang)"/>
+            <t t-set="forced_vat" t-value="doc.fiscal_position_id.foreign_vat"/>
+            <div class="page">
+                <h3 style="text-align:center;">COTIZACION N°
+                    <t t-esc="doc.name"/>
+                </h3>
+            </div>
+            <div class="row"
+                 style="margin-top:0px!important; border: 2px solid black; border-radius: 4px!important;">
+                <table style="margin-top: 0px!important; margin-bottom:0px !important;">
+                    <tbody>
+                        <tr style="max-height:50px; font-size:18px !important;">
+                            <td style="border-top:0px !important;padding:0px !important;background-color: grey;">
+                                <strong>CLIENTE</strong>
+                            </td>
+                            <td style="border-top:0px !important;padding:0px !important;">
+                                <span t-field="doc.partner_id.name"/>
+                            </td>
+                            <td style="border-top:0px !important;padding:0px !important;background-color: grey;">
+                                <strong>FECHA</strong>
+                            </td>
+                            <td style="border-top:0px !important;padding:0px !important;">
+                                <t>
+                                    <span t-field="doc.date_order"/>
+                                </t>
+                            </td>
+
+                        </tr>
+                        <tr style="max-height:50px; font-size:18px !important;">
+                            <td style="border-top:0px !important;padding:0px !important;background-color: grey;">
+                                <strong>ATENCIÓN</strong>
+                            </td>
+                            <td style="border-top:0px !important;padding:0px !important;">
+                                <span t-field="doc.partner_id.name"/>
+                            </td>
+                            <td style="border-top:0px !important;padding:0px !important;background-color: grey;">
+                                <strong>CELULAR</strong>
+                            </td>
+                            <td style="border-top:0px !important;padding:0px !important;">
+                                <t>
+                                    <span t-field="doc.partner_id.mobile"/>
+                                </t>
+                            </td>
+                        </tr>
+                        <tr style="max-height:50px; font-size:18px !important;">
+                            <td style="border-top:0px !important;padding:0px !important;background-color: grey;">
+                                <strong>REFERENCIA</strong>
+                            </td>
+                            <td style="border-top:0px !important;padding:0px !important;">
+                                <span t-field="doc.opportunity_id.name"/>
+                            </td>
+                            <td style="border-top:0px !important;padding:0px !important;background-color: grey;">
+                                <strong>CORREO</strong>
+                            </td>
+                            <td style="border-top:0px !important;padding:0px !important;">
+                                <span t-field="doc.partner_id.email"/>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div style="text-align: center; margin-top: 20px;">
+                <t t-foreach="doc.order_line" t-as="line">
+                    <div class="page">
+                        <t t-set="product" t-value="line"/>
+                        <h4 style="margin-bottom: 20px;">
+                            <t t-esc="product.name.replace('[', '').split(']')[1]"/>
+                        </h4>
+
+                        <div class="product-image">
+                            <img t-att-src="'/web/image/product.product/' + str(product.product_id.id) + '/image_1920'" style="border: 1px solid black;"/>
+                        </div>
+                        <h6 style="text-align:left;margin-top: 20px;"><strong>ESPECIFICACIONES TÉCNICAS GENERALES</strong></h6>
+                        <table class="table table-borderless">
+                            <tbody>
+                                <t t-foreach="product.product_id.product_template_attribute_value_ids" t-as="value">
+                                    <tr>
+                                        <td style="text-align: left;font-size:12px !important;">
+                                            <t t-esc="'• ' + value.attribute_id.name + ': '"/>
+                                        </td>
+                                        <td style="text-align: left;font-size:12px !important;">
+                                            <t t-esc="value.name"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                        <h6 style="text-align:left;margin-top: 20px;"><strong>VALORES</strong></h6>
+                        <table style="text-align:center;margin-top: 20px;">
+                            <t t-foreach="product.product_id.product_template_attribute_value_ids[0]" t-as="attribute">
+                            </t>
+                            <thead>
+                                <tr>
+                                    <th style="text-align: left;font-size:20px !important;background-color: red;">
+                                        <t>
+                                            <t t-esc="attribute.attribute_id.name + ' ' + 'EQUIPO HELI'"/>
+                                        </t>
+                                    </th>
+                                    <th style="text-align: left;font-size:20px !important;background-color: red;">
+                                        VALOR NETO US$
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="text-align: left;font-size:20px !important;">
+                                        <t t-esc="attribute.name"/>
+                                    </td>
+                                    <td style="text-align: left;font-size:20px !important;">
+                                        <t t-esc="product.price_unit"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br/>
+                    </div>
+                </t>
+            </div>
+            <h6 style="text-align:left;margin-top: 20px;"><strong>CONDICIONES COMERCIALES</strong></h6>
+            <table class="table table-borderless">
+                <tbody>
+                    <t>
+                        <tr>
+                            <td style="border-top:0px !important;padding:0px !important;">
+                                <strong>PLAZO DE ENTREGA:</strong>
+                            </td>
+                            <td style="border-top:0px !important;padding:0px !important;text-align:left">
+                                <span t-field="doc.commitment_date"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border-top:0px !important;padding:0px !important;">
+                                <strong>VALOR EN US$:</strong>
+                            </td>
+                            <td style="border-top:0px !important;padding:0px !important;text-align:left">
+                                <span t-field="doc.amount_untaxed"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border-top:0px !important;padding:0px !important;">
+                                <strong>TIPO DE CAMBIO:</strong>
+                            </td>
+                            <td style="border-top:0px !important;padding:0px !important;text-align:left">
+                                <span t-field="doc.pricelist_id.currency_id.inverse_rate"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border-top:0px !important;padding:0px !important;">
+                                <strong>VALIDEZ DE OFERTA:</strong>
+                            </td>
+                            <td style="border-top:0px !important;padding:0px !important;text-align:left">
+                                <span t-field="doc.validity_date"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border-top:0px !important;padding:0px !important;">
+                                <strong>FORMA DE PAGO:</strong>
+                            </td>
+                            <td style="border-top:0px !important;padding:0px !important;text-align:left">
+                                <span t-field="doc.payment_term_id.name"/>
+                            </td>
+                        </tr>
+                    </t>
+                </tbody>
+            </table>
+        </t>
+    </template>
+
+
+    <template id="report_saleorder_heli">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="reports_extended_heli.report_saleorder_document_heli" t-lang="doc.partner_id.lang"/>
+            </t>
+        </t>
+    </template>
+
+
+</odoo>
+
