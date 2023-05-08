@@ -6,9 +6,9 @@
             <field name="model">sale.order</field>
             <field name="report_type">qweb-pdf</field>
             <field name="report_name">reports_extended_heli.report_saleorder_heli</field>
-            <field name="report_file">reports_extended.report_saleorder_heli</field>
+            <field name="report_file">reports_extended_heli.report_saleorder_heli</field>
             <field name="print_report_name">(object.state in ('draft', 'sent') and 'Quotation - %s' % (object.name)) or 'Order - %s' % (object.name)</field>
-            <field name="binding_model_id" ref="model_sale_order"/>
+            <field name="binding_model_id" ref="sale.model_sale_order"/>
             <field name="binding_type">report</field>
         </record>
 

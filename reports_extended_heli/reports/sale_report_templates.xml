@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="report_saleorder_document_heli">
-        <t t-call="web.external_layout">
+        <t t-call="web.basic_layout">
             <t t-set="doc" t-value="doc.with_context(lang=doc.partner_id.lang)"/>
-            <t t-set="forced_vat" t-value="doc.fiscal_position_id.foreign_vat"/>
+            <div class="header">
+                <img t-att-src="'/web/image/res.company/' + str(doc.company_id.id) + '/logo'"/>
+            </div>
+            <br/>
             <div class="page">
                 <h3 style="text-align:center;">COTIZACION N°
                     <t t-esc="doc.name"/>
@@ -15,49 +18,49 @@
                     <tbody>
                         <tr style="max-height:50px; font-size:18px !important;">
                             <td style="border-top:0px !important;padding:0px !important;background-color: grey;">
-                                <strong>CLIENTE</strong>
+                                &#160;<strong>CLIENTE</strong>
                             </td>
                             <td style="border-top:0px !important;padding:0px !important;">
-                                <span t-field="doc.partner_id.name"/>
+                                &#160;<span t-field="doc.partner_id.name"/>
                             </td>
                             <td style="border-top:0px !important;padding:0px !important;background-color: grey;">
-                                <strong>FECHA</strong>
+                                &#160;<strong>FECHA</strong>
                             </td>
                             <td style="border-top:0px !important;padding:0px !important;">
                                 <t>
-                                    <span t-field="doc.date_order"/>
+                                    &#160;<span t-field="doc.date_order"/>
                                 </t>
                             </td>
 
                         </tr>
                         <tr style="max-height:50px; font-size:18px !important;">
                             <td style="border-top:0px !important;padding:0px !important;background-color: grey;">
-                                <strong>ATENCIÓN</strong>
+                                &#160;<strong>ATENCIÓN</strong>
                             </td>
                             <td style="border-top:0px !important;padding:0px !important;">
-                                <span t-field="doc.partner_id.name"/>
+                                &#160;<span t-field="doc.partner_id.name"/>
                             </td>
                             <td style="border-top:0px !important;padding:0px !important;background-color: grey;">
-                                <strong>CELULAR</strong>
+                                &#160;<strong>CELULAR</strong>
                             </td>
                             <td style="border-top:0px !important;padding:0px !important;">
                                 <t>
-                                    <span t-field="doc.partner_id.mobile"/>
+                                    &#160;<span t-field="doc.partner_id.mobile"/>
                                 </t>
                             </td>
                         </tr>
                         <tr style="max-height:50px; font-size:18px !important;">
                             <td style="border-top:0px !important;padding:0px !important;background-color: grey;">
-                                <strong>REFERENCIA</strong>
+                                &#160;<strong>REFERENCIA</strong>
                             </td>
                             <td style="border-top:0px !important;padding:0px !important;">
-                                <span t-field="doc.opportunity_id.name"/>
+                                &#160;<span t-field="doc.opportunity_id.name"/>
                             </td>
                             <td style="border-top:0px !important;padding:0px !important;background-color: grey;">
-                                <strong>CORREO</strong>
+                                &#160;<strong>CORREO</strong>
                             </td>
                             <td style="border-top:0px !important;padding:0px !important;">
-                                <span t-field="doc.partner_id.email"/>
+                                &#160;<span t-field="doc.partner_id.email"/>
                             </td>
                         </tr>
                     </tbody>
@@ -72,46 +75,49 @@
                         </h4>
 
                         <div class="product-image">
-                            <img t-att-src="'/web/image/product.product/' + str(product.product_id.id) + '/image_1920'" style="border: 1px solid black;"/>
+                            <img t-att-src="'/web/image/product.product/' + str(product.product_id.id) + '/image_1920'" style="border: 5px solid black;"/>
                         </div>
-                        <h6 style="text-align:left;margin-top: 20px;"><strong>ESPECIFICACIONES TÉCNICAS GENERALES</strong></h6>
-                        <table class="table table-borderless">
+                        <strong>Foto referencial</strong>
+                        <h6 style="text-align:left;margin-top: 30px;"><strong>ESPECIFICACIONES TÉCNICAS GENERALES</strong></h6>
+                        <table class="table table-striped table-borderless" style="width: 30%;">
                             <tbody>
                                 <t t-foreach="product.product_id.product_template_attribute_value_ids" t-as="value">
                                     <tr>
-                                        <td style="text-align: left;font-size:12px !important;">
+                                        <td style="text-align: left;font-size:12px !important;border-top:5px !important;padding:5px !important;">
                                             <t t-esc="'• ' + value.attribute_id.name + ': '"/>
                                         </td>
-                                        <td style="text-align: left;font-size:12px !important;">
+                                        <td style="text-align: left;font-size:12px !important;border-top:5px !important;padding:5px !important;">
                                             <t t-esc="value.name"/>
                                         </td>
                                     </tr>
                                 </t>
                             </tbody>
                         </table>
-                        <h6 style="text-align:left;margin-top: 20px;"><strong>VALORES</strong></h6>
-                        <table style="text-align:center;margin-top: 20px;">
+                        <br/>
+                        <br/>
+                        <h6 style="text-align:left;"><strong>VALORES</strong></h6>
+                        <table style="text-align:center;margin-top: 30px;width: 80%; margin: 0 auto;">
                             <t t-foreach="product.product_id.product_template_attribute_value_ids[0]" t-as="attribute">
                             </t>
                             <thead>
                                 <tr>
                                     <th style="text-align: left;font-size:20px !important;background-color: red;">
                                         <t>
-                                            <t t-esc="attribute.attribute_id.name + ' ' + 'EQUIPO HELI'"/>
+                                            &#160;<t t-esc="attribute.attribute_id.name + ' ' + 'EQUIPO HELI'"/>
                                         </t>
                                     </th>
                                     <th style="text-align: left;font-size:20px !important;background-color: red;">
-                                        VALOR NETO US$
+                                        &#160;VALOR NETO US$
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td style="text-align: left;font-size:20px !important;">
-                                        <t t-esc="attribute.name"/>
+                                        &#160;<t t-esc="attribute.name"/>
                                     </td>
                                     <td style="text-align: left;font-size:20px !important;">
-                                        <t t-esc="product.price_unit"/>
+                                        &#160;<t t-esc="product.price_unit"/>
                                     </td>
                                 </tr>
                             </tbody>
@@ -120,8 +126,8 @@
                     </div>
                 </t>
             </div>
-            <h6 style="text-align:left;margin-top: 20px;"><strong>CONDICIONES COMERCIALES</strong></h6>
-            <table class="table table-borderless">
+            <h6 style="text-align:left;margin-top: 30px;"><strong>CONDICIONES COMERCIALES</strong></h6>
+            <table class="table table-borderless" style="width: 40%;">
                 <tbody>
                     <t>
                         <tr>
@@ -167,6 +173,45 @@
                     </t>
                 </tbody>
             </table>
+            <br/>
+            <br/>
+            Saludos
+            <br/>
+            <br/>
+            <table class="table table-borderless" style="width: 40%;">
+                <tbody>
+                    <t>
+                        <tr>
+                            <td style="border-top:0px !important;padding:0px !important;text-align:left">
+                                <span t-field="doc.user_id.name"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border-top:0px !important;padding:0px !important;text-align:left">
+                                <span t-field="doc.company_id.name"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border-top:0px !important;padding:0px !important;text-align:left">
+                                <span t-field="doc.user_id.mobile"/>
+                            </td>
+                        </tr>
+                         <tr>
+                            <td style="border-top:0px !important;padding:0px !important;text-align:left">
+                                <span t-field="doc.user_id.email"/>
+                            </td>
+                        </tr>
+                         <tr>
+                            <td style="border-top:0px !important;padding:0px !important;text-align:left">
+                                <span t-field="doc.company_id.website"/>
+                            </td>
+                        </tr>
+                    </t>
+                </tbody>
+            </table>
+            <div class="footer">
+                <img t-att-src="'/web/image/res.company/' + str(doc.company_id.id) + '/footer'" style="text-align: center;widht: 100%"/>
+            </div>
         </t>
     </template>
 
