@@ -11,8 +11,8 @@ _logger = logging.getLogger(__name__)
 class ProductPricelist(models.Model):
     _inherit = "product.pricelist"
 
-    def _compute_price_rule(self, products, qty, uom=None, date=False, **kwargs):
-        return {}
+    def _compute_price_rule(self, products, qty, uom=None, date=False):
+        return
 
 
 
