@@ -30,7 +30,7 @@
         <field name="model">product.product</field>
         <field
             name="inherit_id"
-            ref="product_variant_configurator.product_variants_view"
+            ref="product_variant_configurator_heli.product_variants_view"
         />
         <field name="arch" type="xml">
             <xpath expr="//div[hasclass('oe_title')]" position="after">
