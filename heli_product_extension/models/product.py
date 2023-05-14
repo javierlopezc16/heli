@@ -8,10 +8,12 @@ from odoo.exceptions import ValidationError, RedirectWarning, UserError
 _logger = logging.getLogger(__name__)
 
 
+
+
 class ProductPricelist(models.Model):
     _inherit = "product.pricelist"
 
-    def _compute_price_rule(self, products, qty, uom=None, date=False):
+    def _compute_price_rule(self, products_qty_partner, date=False, uom_id=False):
         return
 
 
