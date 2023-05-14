@@ -14,7 +14,7 @@
     'category': 'Retail',
     'version': '16.0.1',
     'depends': [
-        'product',
+        'product_variant_configurator',
     ],
 
     'data': [
