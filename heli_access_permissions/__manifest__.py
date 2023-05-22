@@ -6,7 +6,7 @@
         """,
 
     'description': """
-        No permite modificar precio de venta ni descuentos en pedido de venta
+        No permite modificar precios de venta ni descuentos en los pedidos de venta
     """,
 
     'author': "Javier López",
